@@ -1,0 +1,118 @@
+/* 全体コンテナ */
+.attendance-container {
+    position: relative;
+    width: 1440px;
+    height: 1440px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(240, 239, 242, 1);
+}
+
+/* 勤務外/勤務中/休憩中ラベル */
+.attendance-status {
+    position: absolute;
+    top: 289px;
+    left: 600px;
+    width: 100px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: rgba(200, 200, 200, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    color: rgba(105, 105, 105, 1);
+}
+
+/* 日付 */
+.attendance-date {
+    position: absolute;
+    top: 361px;
+    left: 500px;
+    width: 332px;
+    height: 48px;
+
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 100%;
+}
+
+/* 時刻 */
+.attendance-time {
+    position: absolute;
+    top: 441px;
+    left: 530px;
+    width: 270px;
+    height: 97px;
+
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 100%;
+}
+
+.attendance-button {
+    position: absolute;
+    top: 630px;
+    left: 550px;
+    width: 221px;
+    height: 77px;
+    border-radius: 20px;
+    border: none;
+
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+
+    cursor: pointer;
+}
+
+.clock-in {
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+/* 退勤　*/
+.clock-out {
+    top: 612px;
+    left: 410px;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+/* 休憩入*/
+.break-in {
+    top: 612px;
+    left: 700px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+}
+
+/* 休憩戻*/
+.break-back {
+    top: 612px;
+    left: 550px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+}
+
+/* 退勤メッセージ：お疲れ様でした。 */
+.attendance-message {
+    position: absolute;
+    top: 610px;
+    left: 500px;
+    width: 332px;
+    height: 31px;
+
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+    text-align: center;
+
+    opacity: 1;
+}

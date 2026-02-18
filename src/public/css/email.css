@@ -1,0 +1,54 @@
+.verify-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.verify-text {
+    position: absolute;
+    width: 720px;
+    height: 58px;
+    top: 319px;
+    left: 300px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.verify-button {
+    position: absolute;
+    width: 257px;
+    height: 69px;
+    top: 439px;
+    left: 530px;
+
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: rgba(217, 217, 217, 1);
+
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.resend-link {
+    position: absolute;
+    width: 257px;
+    height: 53.29px;
+    top: 540px;
+    left: 530px;
+
+    background: none;
+    border: none;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
+    color: rgba(0, 115, 204, 1);
+    cursor: pointer;
+
+    text-align: center;
+}

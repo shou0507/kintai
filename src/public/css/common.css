@@ -1,0 +1,106 @@
+/* ヘッダー全体 */
+.header {
+    background: #000;
+    padding: 20px 20px;   /* 高さを抑える */
+}
+
+/* 横幅中央揃え＆横並び */
+.header__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* 左：ロゴ／中央：検索／右：ナビ */
+}
+
+/* ロゴ */
+.header__logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-nav {
+    display: flex;
+    gap: 12px;
+}
+
+.header-nav__link {
+    white-space: nowrap;
+}
+
+/* 検索エリア（中央） */
+.header-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;      /* 真ん中に配置 */
+}
+
+/* 白い検索ボックス */
+.header-search__box {
+    width: 500px;
+    height: 40px;
+
+    background: #fff;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+/* 入力欄 */
+.header-search__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+}
+
+/* ナビ（右） */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ナビの文字（ログアウト／マイページ） */
+.header-nav__link {
+    width: 100px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    background: transparent;   /* ← 背景なし */
+    border: none;
+}
+
+/* 出品ボタン（右端） */
+.header-nav__sell {
+    width: 80px;
+    height: 40px;
+
+    background: #fff;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* ログアウト用form */
+.logout-form {
+    margin: 0;
+}

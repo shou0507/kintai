@@ -1,0 +1,88 @@
+.login-form__content {
+    width: 680px;
+    height: 678px;
+
+    position: absolute;
+    top: 178px;
+    left: 300px;
+
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.login-form__content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: center;
+
+    opacity: 1;
+}
+
+.form__group {
+    margin-bottom: 60px;
+}
+
+.form__label--item,
+.form__input--item {
+    width: 680px;
+    height: 35px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: rgba(0, 0, 0, 1);
+    opacity: 1;
+
+    transform: rotate(0deg);
+}
+
+.form__group-content input {
+    width: 680px;
+    height: 59px;
+
+    border-radius: 4px;
+    border: 1px solid #000;
+
+    opacity: 1;
+    transform: rotate(0deg);
+
+    font-size: 16px;
+}
+
+.form__button-submit {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    width: 680px;
+    height: 65px;
+
+    background-color: #000;
+    border-radius: 5px;
+    border: none;
+
+    font-size: 24px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 1);
+
+    margin-top: 50px;
+}
+
+.register__link {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.register__button-submit {
+    color: rgba(0, 115, 204, 1);
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.form__error {
+    color: #e60033;
+}

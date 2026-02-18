@@ -1,0 +1,261 @@
+/* 背景 */
+body {
+    background-color: rgba(240, 239, 242, 1);
+}
+
+/* ページ土台 */
+.art-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans JP",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+}
+
+/* タイトル */
+.art-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+.art-title-bar {
+    width: 40px;
+    height: 0;
+    border-top: 8px solid #111;
+    transform: rotate(90deg);
+}
+.art-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* カード */
+.ad-card {
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 0 1px #eee inset;
+    padding: 26px 0 18px;
+    position: relative;
+}
+
+/* 行 */
+.ad-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* ラベル */
+.ad-label {
+    width: 240px;
+    padding-left: 64px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #111;
+}
+
+/* 値 */
+.ad-value {
+    flex: 1;
+    padding-right: 64px;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(115, 115, 115, 1);
+    letter-spacing: 0.15em;
+}
+
+/* 区切り線 */
+.ad-line {
+    height: 2px;
+    background: rgba(225, 225, 225, 1);
+    margin: 8px 0;
+}
+
+/* 日付 */
+.ad-row-date {
+    align-items: center;
+}
+.ad-date-wrap {
+    display: flex;
+    gap: 140px;
+    align-items: center;
+    padding-right: 64px;
+    color: rgba(115, 115, 115, 1);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+.ad-date-year,
+.ad-date-md {
+    font-size: 16px;
+}
+
+/* 時刻ペア */
+.ad-timepair {
+    display: grid;
+    grid-template-columns: 103px 16px 103px;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.ad-time,
+.ad-tilde {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(115, 115, 115, 1);
+}
+
+/* 休憩ブロック全体 */
+.ad-row-breaks {
+    align-items: flex-start; /* 休憩が2行になるので上揃え */
+}
+
+/* 休憩の2行コンテナ */
+.ad-breaks {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* 休憩1と休憩2の縦間隔（好みで調整） */
+}
+
+/* 休憩1行（左：休憩/休憩2、右：時間枠） */
+.ad-break-row {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* 「休憩」と時間枠の間 */
+}
+
+/* 「休憩」「休憩2」ラベル（Figma: 47×19相当） */
+.ad-break-title {
+    width: 47px; /* 指定サイズに寄せる */
+    line-height: 19px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* 時間枠 〜 時間枠 の並び（Figma位置感：103, 16, 103） */
+.ad-break-timepair {
+    display: grid;
+    grid-template-columns: 103px 16px 103px;
+    align-items: center;
+    column-gap: 10px; /* Figmaの left 639→793 など厳密再現より、見た目が自然な値 */
+}
+
+/* 時刻ボックス（Figma: 103×29、radius 4、border 1） */
+.ad-timebox {
+    width: 103px;
+    height: 29px;
+    border: 1px solid #cfcfcf;
+    border-radius: 4px;
+
+    /* ↓ Figma指定 */
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1; /* ★100% */
+    letter-spacing: 0.15em;
+
+    color: rgba(115, 115, 115, 1);
+
+    /* ↓ flexはやめる */
+    text-align: center;
+}
+
+/* 〜（Figma: 16×19） */
+.ad-tilde {
+    text-align: center;
+}
+
+/* （もし.ad-rowがデフォで中央揃えなら、休憩だけ上揃えにする保険） */
+.ad-row-breaks .ad-value {
+    align-items: flex-start;
+}
+
+/* 備考 */
+.ad-row-note {
+    align-items: flex-start;
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+/* 備考ボックス：文字の開始位置を下げる */
+.ad-note {
+    width: 316px;
+    min-height: 72px;
+    border: 1px solid rgba(200, 200, 200, 1);
+    border-radius: 4px;
+    margin-top: -16px;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(115, 115, 115, 1);
+    letter-spacing: 0.15em;
+    line-height: 1;
+}
+
+/* 修正ボタン */
+.ad-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 64px 0;
+}
+.ad-editbtn {
+    width: 130px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid rgba(200, 200, 200, 1);
+    background: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 1);
+    background-color: #111;
+    cursor: pointer;
+}
+
+.is-locked .ad-timebox,
+.is-locked .ad-note {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+
+    pointer-events: none; /* ← マウス操作完全無効 */
+}
+
+.ad-pending-message {
+    font-size: 14px;
+    font-weight: 700;
+    color: red;
+    letter-spacing: 0.15em;
+    line-height: 1;
+
+    text-align: right;
+    padding-right: 64px; /* 修正ボタンと同じ右余白 */
+    background-color: (255, 0, 0, 0.5);
+}
+
+/* 承認済み表示（Group 63） */
+.ad-approved {
+    background: rgba(105, 105, 105, 1); /* #696969 */
+    color: rgba(255, 255, 255, 1); /* #ffffff */
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.form__error {
+    color: #d00;
+}
