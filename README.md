@@ -51,7 +51,7 @@ php artisan db:seed
 - Stripe（クレジットカード決済）
 
 ## ER図
-![ER図](/Users/sugiyamashou/kintai/src/.drawio.png)
+![ER図](src/.drawio.png)
 ## URL
 - 開発環境：http://localhost/
 - phpMyAdmin:：http://localhost:8080/
