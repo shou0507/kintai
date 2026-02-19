@@ -55,21 +55,35 @@ php artisan db:seed
 - 開発環境：http://localhost/
 - phpMyAdmin:：http://localhost:8080/
 
-## メール送信設定（Mailtrap）
+## メール認証
+mailtrapというツールを使用しています。<br>
+以下のリンクから会員登録をしてください。　<br>
+https://mailtrap.io/
 
-開発環境では Mailtrap を使用してメール送信をテストしています。
+メールボックスのIntegrationsから 「laravel 7.x and 8.x」を選択し、　<br>
+.envファイルのMAIL_MAILERからMAIL_ENCRYPTIONまでの項目をコピー＆ペーストしてください。　<br>
+MAIL_FROM_ADDRESSは任意のメールアドレスを入力してください。　
 
-1. [Mailtrap](https://mailtrap.io/) にサインアップし、Inbox を作成します。
-2. Inbox の「Integration」タブから Laravel / PHP 用の接続情報を確認します。
-3. `.env` に以下のように設定します（値は Mailtrap の画面からコピーしてください）。
+## テストアカウント
+name: 一般ユーザ  
+email: general1@gmail.com  
+password: password  
+-------------------------
+name: 一般ユーザ  
+email: general2@gmail.com  
+password: password  
+-------------------------
 
-```text
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=（Mailtrap の Username）
-MAIL_PASSWORD=（Mailtrap の Password）
-MAIL_ENCRYPTION=tls
+## PHPUnitを利用したテストに関して
+以下のコマンド:  
+```
+//テスト用データベースの作成
+docker-compose exec mysql bash
+mysql -u root -p
+//パスワードはrootと入力
+create database test_database;
 
-MAIL_FROM_ADDRESS=test@example.com
-MAIL_FROM_NAME="MyApp"
+docker-compose exec php bash
+php artisan migrate:fresh --env=testing
+./vendor/bin/phpunit
+```
