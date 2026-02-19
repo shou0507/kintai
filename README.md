@@ -48,7 +48,6 @@ php artisan db:seed
 - Laravel8.83.27
 - MySQL8.0.26
 - Mailtrap（メール送信テスト）
-- Stripe（クレジットカード決済）
 
 ## ER図
 ![ER図](src/.drawio.png)
