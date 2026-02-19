@@ -1,7 +1,7 @@
 # kintai
 ## 環境構築
 **Dockerビルド**
-1. `git clone git@github.com:shou0507/furimaapp.git`
+1. `git clone git@github.com:shou0507/kintai.git`
 2. DockerDesktopアプリを立ち上げる
 3. `docker-compose up -d --build`
 
@@ -51,7 +51,7 @@ php artisan db:seed
 - Stripe（クレジットカード決済）
 
 ## ER図
-![ER図](./src/erdiagram.png)
+![ER図](/Users/sugiyamashou/kintai/src/.drawio.png)
 ## URL
 - 開発環境：http://localhost/
 - phpMyAdmin:：http://localhost:8080/
