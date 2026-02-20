@@ -107,7 +107,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/staff/list', [StaffController::class, 'index'])->name('admin.staff.list');
     Route::get('/attendance/staff/{id}', [AdminAttendanceController::class, 'staffIndex'])->name('admin.attendance.staff');
 
-    //CSV出力
+    // CSV出力
     Route::get('/attendance/staff/{id}/csv', [AdminAttendanceController::class, 'staffCsv'])->name('admin.attendance.staff.csv');
 });
 

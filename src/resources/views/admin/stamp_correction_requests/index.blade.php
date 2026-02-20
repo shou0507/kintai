@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.auth')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/requests.css') }}?v={{ time() }}">

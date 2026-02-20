@@ -160,7 +160,7 @@ class AttendanceController extends Controller
         $base = $monthStr
             ? Carbon::createFromFormat('Y-m', $monthStr)->startOfMonth()
             : now()->startOfMonth();
-        
+
         $start = $base->copy()->startOfMonth();
         $end = $base->copy()->endOfMonth();
 
@@ -170,35 +170,38 @@ class AttendanceController extends Controller
             ->whereDate('date', '<=', $end->toDateString())
             ->orderBy('date')
             ->get();
-        
-        $fileName = 'attendance_' . $user->id . '_' . $base->format('Y-m') . '.csv';
+
+        $fileName = 'attendance_'.$user->id.'_'.$base->format('Y-m').'.csv';
 
         return response()->streamDownload(function () use ($attendances, $user) {
             $out = fopen('php://output', 'w');
 
-        // Excel想定の文字化け対策
-        fwrite($out, "\xEF\xBB\xBF");
+            // Excel想定の文字化け対策
+            fwrite($out, "\xEF\xBB\xBF");
 
-        // ヘッダー
-        fputcsv($out, ['氏名', '日付', '出勤', '退勤', '休憩合計(分)', '備考']);
+            // ヘッダー
+            fputcsv($out, ['氏名', '日付', '出勤', '退勤', '休憩合計(分)', '備考']);
 
-        foreach ($attendances as $a) {
-            $breakMinutes = $a->breaks->sum(function ($b) {
-                if (! $b->break_in || ! $b->break_out) return 0;
-                return $b->break_out->diffInMinutes($b->break_in);
-            });
+            foreach ($attendances as $a) {
+                $breakMinutes = $a->breaks->sum(function ($b) {
+                    if (! $b->break_in || ! $b->break_out) {
+                        return 0;
+                    }
 
-            fputcsv($out, [
-                $user->name,
-                Carbon::parse($a->date)->format('Y-m-d'),
-                $a->clock_in ? $a->clock_in->format('H:i') : '',
-                $a->clock_out ? $a->clock_out->format('H:i') : '',
-                $breakMinutes,
-                $a->note ?? '',
-            ]);
-        }
+                    return $b->break_out->diffInMinutes($b->break_in);
+                });
 
-        fclose($out);
+                fputcsv($out, [
+                    $user->name,
+                    Carbon::parse($a->date)->format('Y-m-d'),
+                    $a->clock_in ? $a->clock_in->format('H:i') : '',
+                    $a->clock_out ? $a->clock_out->format('H:i') : '',
+                    $breakMinutes,
+                    $a->note ?? '',
+                ]);
+            }
+
+            fclose($out);
         }, $fileName, [
             'content-Type' => 'text/csv; charset=UTF-8',
         ]);

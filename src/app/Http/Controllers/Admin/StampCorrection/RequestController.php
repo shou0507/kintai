@@ -62,7 +62,7 @@ class RequestController extends Controller
             'clock_out' => $scr->clock_out
                 ? Carbon::createFromFormat('Y-m-d H:i', "{$dateStr} {$scr->clock_out}")
                 : $scr->attendance->clock_out,
-            
+
             'note' => $scr->note ?? $scr->attendance->note,
         ];
 

@@ -169,7 +169,7 @@ class AttendanceController extends Controller
 
             return view('attendance.detail', [
                 'attendance' => $attendance,
-                'date' => $attendance->date->format('Y-m-d'),
+                'date' => Carbon::parse($attendance->date)->format('Y-m-d'),
                 'pendingCorrection' => $pendingCorrection,
             ]);
         }
@@ -182,43 +182,38 @@ class AttendanceController extends Controller
 
         $date = Carbon::createFromFormat('Y-m-d', $dateStr)->startOfDay();
 
-        // 既にその日付のレコードがあればそれを表示、無ければ「空の詳細」を表示
-        $attendance = Attendance::with('breaks')
-            ->where('user_id', Auth::id())
-            ->whereDate('date', $date->toDateString())
-            ->first();
-
-        // 無ければ “未保存の空モデル” を渡す（画面は出せる）
-        if (! $attendance) {
-            $attendance = new Attendance([
+        // ✅ その日が無ければ作る（nullを絶対に残さない）
+        $attendance = Attendance::firstOrCreate(
+            [
                 'user_id' => Auth::id(),
-                'date' => $date,
+                'date' => $date->toDateString(),
+            ],
+            [
                 'clock_in' => null,
                 'clock_out' => null,
                 'note' => null,
-            ]);
-            $attendance->setRelation('breaks', collect());
-        }
+            ]
+        );
+
+        // breaks を安全に使えるようにロード
+        $attendance->load('breaks');
+
+        $pendingCorrection = AttendanceCorrection::where('user_id', Auth::id())
+            ->where('attendance_id', $attendance->id)
+            ->where('status', 'pending')
+            ->latest()
+            ->first();
 
         return view('attendance.detail', [
             'attendance' => $attendance,
             'date' => $date->format('Y-m-d'),
+            'pendingCorrection' => $pendingCorrection,
         ]);
     }
 
     public function storeCorrection(AttendanceRequest $request, $id)
     {
-        $attendance = Attendance::with('breaks')
-            ->where('id', $id)
-            ->where('user_id', Auth::id())   // ✅ user-id → user_id
-            ->firstOrFail();
 
-        $exists = AttendanceCorrection::where('user_id', Auth::id()) // ✅ user-id → user_id
-            ->where('attendance_id', $attendance->id)
-            ->where('status', 'pending')
-            ->exists();
-
-        // 空文字を null に寄せる（nullable を効かせるため）
         $request->merge([
             'clock_in' => $request->input('clock_in') ?: null,
             'clock_out' => $request->input('clock_out') ?: null,
@@ -228,6 +223,27 @@ class AttendanceController extends Controller
             'break2_out' => $request->input('break2_out') ?: null,
             'note' => $request->input('note') ?: null,
         ]);
+
+        $data = $request->validated();
+
+        $attendance = Attendance::with('breaks')
+            ->where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        if (! $attendance) {
+            abort(404);
+        }
+
+        $exists = AttendanceCorrection::where('user_id', Auth::id())
+            ->where('attendance_id', $attendance->id)
+            ->where('status', 'pending')
+            ->exists();
+
+        if ($exists) {
+            return redirect()->to("/attendance/detail/{$attendance->id}")
+                ->with('message', 'すでに承認待ちの申請があります。');
+        }
 
         // ✅ ここで「承認待ち」申請を保存する
         AttendanceCorrection::create([
@@ -246,6 +262,6 @@ class AttendanceController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->to("/attendance/detail/{$id}");
+        return redirect()->to("/attendance/detail/{$attendance->id}");
     }
 }

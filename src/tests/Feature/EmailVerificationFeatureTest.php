@@ -34,7 +34,7 @@ class EmailVerificationFeatureTest extends TestCase
     public function メール認証誘導画面で認証メール再送ができる(): void
     {
         Notification::fake();
-        
+
         $user = User::factory()->create([
             'email_verified_at' => null,
         ]);
