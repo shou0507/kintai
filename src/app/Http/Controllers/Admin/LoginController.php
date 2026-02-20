@@ -23,7 +23,11 @@ class LoginController extends Controller
             ]
         );
 
-        if (! Auth::attempt($request->only('email', 'password'))) {
+        if (! Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+            'is_admin' => 1,
+        ])) {
             throw ValidationException::withMessages([
                 'email' => 'ログイン情報が登録されていません',
             ]);

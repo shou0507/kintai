@@ -84,7 +84,7 @@ Route::middleware('auth', 'verified')->group(function () {
 // =====================================================
 // 本当は ->middleware(['auth','admin']) が理想（admin判定）
 // まずは /admin に寄せて一般URLと衝突しないようにする
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware(['auth','admin'])->group(function () {
 
     // 申請
     Route::get('/stamp_correction_request/list', [AdminStampCorrectionRequestController::class, 'index'])
